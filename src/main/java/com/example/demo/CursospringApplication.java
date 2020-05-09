@@ -1,6 +1,8 @@
 package com.example.demo;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -9,9 +11,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.domain.Categoria;
 import com.example.demo.domain.Cidade;
+import com.example.demo.domain.Cliente;
+import com.example.demo.domain.Endereco;
 import com.example.demo.domain.Estado;
 import com.example.demo.domain.Produto;
+import com.example.demo.domain.enums.TipoCliente;
 import com.example.demo.repositories.CategoriaRepository;
+import com.example.demo.repositories.ClienteRepository;
 import com.example.demo.repositories.EstadoRepository;
 import com.example.demo.repositories.ProdutoRepository;
 
@@ -26,6 +32,9 @@ public class CursospringApplication implements CommandLineRunner {
 	
 	@Autowired
 	private EstadoRepository estadoRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
 	
 
 	public static void main(String[] args) {
@@ -53,11 +62,19 @@ public class CursospringApplication implements CommandLineRunner {
 	   Cidade c2 = new Cidade("Maracanau");
 	   
 	   e1.setCidades(Arrays.asList(c1 , c2));
+	   
+	   Cliente cliente1= new Cliente("Rafael", "rafa834@gmail.com", TipoCliente.PESSOA_FISICA, "98665278320");
+	   Endereco end1  = new Endereco("Rua x", c1);
+	   cliente1.setEnderecos(Arrays.asList(end1));
+	   cliente1.setTelefones(Stream.of("1","2","3").collect(Collectors.toSet()));
 	 
 		
 	   categoriaRepository.saveAll(Arrays.asList(cat1 , cat2));
 	   produtoRepository.saveAll(Arrays.asList(p1 , p2 , p3));
 	   estadoRepository.save(e1);
+	   
+	   clienteRepository.save(cliente1);
+	   
 	   
 	}
 

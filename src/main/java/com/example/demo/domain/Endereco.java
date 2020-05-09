@@ -1,7 +1,5 @@
 package com.example.demo.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,21 +8,21 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Cidade implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Endereco {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private String nome;
+	private String logradouro;
 	
 	@ManyToOne
-	@JoinColumn(name = "estado_id")
-	private Estado estado;
+	@JoinColumn(name = "cliente_id")
+	private Cliente cliente;
+	
+	@ManyToOne
+	@JoinColumn(name = "cidade_id")
+	private Cidade cidade; 
 	
 	public Integer getId() {
 		return id;
@@ -32,27 +30,34 @@ public class Cidade implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getNome() {
-		return nome;
+	public String getLogradouro() {
+		return logradouro;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
 	}
-	public Estado getEstado() {
-		return estado;
+	public Cliente getCliente() {
+		return cliente;
 	}
-	public void setEstado(Estado estado) {
-		this.estado = estado;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
-	public Cidade() {
+	
+	
+	public Cidade getCidade() {
+		return cidade;
+	}
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+	public Endereco() {
 		
 	}
-	
-	
-	public Cidade(String nome) {
+	public Endereco(String logradouro, Cidade cidade) {
 		super();
-		this.nome = nome;
+		this.logradouro = logradouro;
+		this.cidade = cidade;
 	}
 	@Override
 	public int hashCode() {
@@ -69,7 +74,7 @@ public class Cidade implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cidade other = (Cidade) obj;
+		Endereco other = (Endereco) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -77,7 +82,6 @@ public class Cidade implements Serializable {
 			return false;
 		return true;
 	}
-
 	
 	
 
