@@ -8,8 +8,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.domain.Categoria;
+import com.example.demo.domain.Cidade;
+import com.example.demo.domain.Estado;
 import com.example.demo.domain.Produto;
 import com.example.demo.repositories.CategoriaRepository;
+import com.example.demo.repositories.EstadoRepository;
 import com.example.demo.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -20,6 +23,9 @@ public class CursospringApplication implements CommandLineRunner {
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private EstadoRepository estadoRepository;
 	
 
 	public static void main(String[] args) {
@@ -41,10 +47,17 @@ public class CursospringApplication implements CommandLineRunner {
 	   p1.setCategorias(Arrays.asList(cat1));
 	   p2.setCategorias(Arrays.asList(cat1, cat2));
 	   p3.setCategorias(Arrays.asList(cat1));
+	   
+	   Estado e1 =new Estado("Ceará");
+	   Cidade c1 = new Cidade("Fortaleza");
+	   Cidade c2 = new Cidade("Maracanau");
+	   
+	   e1.setCidades(Arrays.asList(c1 , c2));
 	 
 		
 	   categoriaRepository.saveAll(Arrays.asList(cat1 , cat2));
 	   produtoRepository.saveAll(Arrays.asList(p1 , p2 , p3));
+	   estadoRepository.save(e1);
 	   
 	}
 
