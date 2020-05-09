@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -14,11 +15,16 @@ import com.example.demo.domain.Cidade;
 import com.example.demo.domain.Cliente;
 import com.example.demo.domain.Endereco;
 import com.example.demo.domain.Estado;
+import com.example.demo.domain.Pagamento;
+import com.example.demo.domain.PagamentoCartao;
+import com.example.demo.domain.Pedido;
 import com.example.demo.domain.Produto;
+import com.example.demo.domain.enums.EstadoPagamento;
 import com.example.demo.domain.enums.TipoCliente;
 import com.example.demo.repositories.CategoriaRepository;
 import com.example.demo.repositories.ClienteRepository;
 import com.example.demo.repositories.EstadoRepository;
+import com.example.demo.repositories.PedidoRepository;
 import com.example.demo.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -35,6 +41,9 @@ public class CursospringApplication implements CommandLineRunner {
 	
 	@Autowired
 	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private PedidoRepository pedidoRepository;
 	
 
 	public static void main(String[] args) {
@@ -75,7 +84,11 @@ public class CursospringApplication implements CommandLineRunner {
 	   
 	   clienteRepository.save(cliente1);
 	   
+	   Pedido ped1 = new Pedido(new Date(),  cliente1, end1);
+	   Pagamento pagto1 = new PagamentoCartao(EstadoPagamento.QUITADO , ped1 , 6);
 	   
+	   ped1.setPagamento(pagto1);
+	   pedidoRepository.save(ped1);
 	}
 
 }

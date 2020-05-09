@@ -40,6 +40,9 @@ public class Cliente extends BaseEntity implements Serializable {
 	@CollectionTable(name  ="TELEFONE")
 	private Set<String> telefones = new HashSet<>();
 	
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos = new ArrayList<>();
+	
 	
 	public String getNome() {
 		return nome;
@@ -82,6 +85,14 @@ public class Cliente extends BaseEntity implements Serializable {
 		this.cpfCnpj = cpfCnpj;
 	}
 	
+	
+	
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
 	public Cliente() {
 		
 	}
