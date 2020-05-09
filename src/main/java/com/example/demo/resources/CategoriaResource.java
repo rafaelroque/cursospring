@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.services.CategoriaService;
 
+
 @RestController
 @RequestMapping(value = "/categorias")
 public class CategoriaResource {
@@ -19,7 +20,7 @@ public class CategoriaResource {
 	private CategoriaService service;
 	
 	@RequestMapping(value = "/{id}" , method = RequestMethod.GET)
-	public ResponseEntity<?> buscar(@PathVariable Integer id) {
+	public ResponseEntity<?> buscar(@PathVariable Integer id)   {
 		
 		return ResponseEntity.ok().body(service.buscar(id));
 	}
