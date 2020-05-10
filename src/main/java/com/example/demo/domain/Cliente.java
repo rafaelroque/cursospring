@@ -13,8 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 import com.example.demo.domain.enums.TipoCliente;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Cliente extends BaseEntity implements Serializable {
@@ -34,14 +33,13 @@ public class Cliente extends BaseEntity implements Serializable {
 	private String cpfCnpj;
 	
 	@OneToMany(mappedBy = "cliente" , cascade = CascadeType.ALL)
-	@JsonManagedReference
 	private List<Endereco> enderecos = new ArrayList<>();
 	
 	@ElementCollection
 	@CollectionTable(name  ="TELEFONE")
 	private Set<String> telefones = new HashSet<>();
 	
-	@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
 	
