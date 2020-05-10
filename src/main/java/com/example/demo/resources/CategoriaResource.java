@@ -43,6 +43,14 @@ public class CategoriaResource {
 		
 	}
 	
+	@RequestMapping(value = "/{id}" , method = RequestMethod.PUT)
+	public ResponseEntity<?> update(@RequestBody Categoria categoria , @PathVariable Integer id)   {
+	  categoria.setId(id);
+		categoria = service.atualizar(categoria);
+	   return ResponseEntity.noContent().build();
+		
+	}
+	
 	
 
 }

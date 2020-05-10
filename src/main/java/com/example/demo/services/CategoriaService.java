@@ -25,5 +25,9 @@ public class CategoriaService {
 	public Categoria salvar(Categoria categoria) {
 		return repo.save(categoria);
 	}
+	
+	public Categoria atualizar(Categoria categoria) {
+		return repo.save(categoria);
+	}
 
 }
