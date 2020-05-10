@@ -17,6 +17,7 @@ import com.example.demo.domain.Endereco;
 import com.example.demo.domain.Estado;
 import com.example.demo.domain.ItemPedido;
 import com.example.demo.domain.Pagamento;
+import com.example.demo.domain.PagamentoBoleto;
 import com.example.demo.domain.PagamentoCartao;
 import com.example.demo.domain.Pedido;
 import com.example.demo.domain.Produto;
@@ -92,7 +93,7 @@ public class CursospringApplication implements CommandLineRunner {
 	   Pedido ped1 = new Pedido(new Date(),  cliente1, end1);
 	   Pedido ped2 = new Pedido(new Date(),  cliente1, end1);
 	   Pagamento pagto1 = new PagamentoCartao(EstadoPagamento.QUITADO , ped1 , 6);
-	   Pagamento pagto2 = new PagamentoCartao(EstadoPagamento.QUITADO , ped2 , 5);
+	   Pagamento pagto2 = new PagamentoBoleto(EstadoPagamento.QUITADO, ped2 , new Date() , new Date());
 	   
 	   ped1.setPagamento(pagto1);
 	   ped2.setPagamento(pagto2);
