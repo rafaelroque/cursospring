@@ -23,6 +23,7 @@ public class Endereco {
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "cidade_id")
 	private Cidade cidade; 
