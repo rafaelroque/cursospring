@@ -15,6 +15,7 @@ import com.example.demo.domain.Cidade;
 import com.example.demo.domain.Cliente;
 import com.example.demo.domain.Endereco;
 import com.example.demo.domain.Estado;
+import com.example.demo.domain.ItemPedido;
 import com.example.demo.domain.Pagamento;
 import com.example.demo.domain.PagamentoCartao;
 import com.example.demo.domain.Pedido;
@@ -24,6 +25,7 @@ import com.example.demo.domain.enums.TipoCliente;
 import com.example.demo.repositories.CategoriaRepository;
 import com.example.demo.repositories.ClienteRepository;
 import com.example.demo.repositories.EstadoRepository;
+import com.example.demo.repositories.ItemPedidoRepository;
 import com.example.demo.repositories.PedidoRepository;
 import com.example.demo.repositories.ProdutoRepository;
 
@@ -44,6 +46,9 @@ public class CursospringApplication implements CommandLineRunner {
 	
 	@Autowired
 	private PedidoRepository pedidoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 	
 
 	public static void main(String[] args) {
@@ -85,10 +90,19 @@ public class CursospringApplication implements CommandLineRunner {
 	   clienteRepository.save(cliente1);
 	   
 	   Pedido ped1 = new Pedido(new Date(),  cliente1, end1);
+	   Pedido ped2 = new Pedido(new Date(),  cliente1, end1);
 	   Pagamento pagto1 = new PagamentoCartao(EstadoPagamento.QUITADO , ped1 , 6);
+	   Pagamento pagto2 = new PagamentoCartao(EstadoPagamento.QUITADO , ped2 , 5);
 	   
 	   ped1.setPagamento(pagto1);
-	   pedidoRepository.save(ped1);
+	   ped2.setPagamento(pagto2);
+	   pedidoRepository.saveAll(Arrays.asList(ped1 , ped2));
+	   
+	   ItemPedido itemPedido1 = new ItemPedido(ped1, p1, 50.00, 5, 200.00);
+	   ItemPedido itemPedido2 = new ItemPedido(ped1, p2, 0.00, 5, 200.00);
+	   ItemPedido itemPedido3 = new ItemPedido(ped2, p1, 0.00, 3, 100.00);
+	   itemPedidoRepository.saveAll(Arrays.asList(itemPedido1 , itemPedido2 ,itemPedido3));
+	   
 	}
 
 }
