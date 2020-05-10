@@ -29,5 +29,9 @@ public class CategoriaService {
 	public Categoria atualizar(Categoria categoria) {
 		return repo.save(categoria);
 	}
+	
+	public void excluir(Integer id) {
+		repo.deleteById(id);
+	}
 
 }
