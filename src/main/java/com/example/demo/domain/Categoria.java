@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.example.demo.dto.CategoriaDTO;
+
 
 @Entity
 public class Categoria implements Serializable {
@@ -58,6 +60,8 @@ public class Categoria implements Serializable {
 		this.id = id;
 		this.nome = nome;
 	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
