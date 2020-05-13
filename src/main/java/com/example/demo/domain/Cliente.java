@@ -97,11 +97,11 @@ public class Cliente extends BaseEntity implements Serializable {
 		
 	}
 	
-	public Cliente(String nome, String email, TipoCliente tipo , String cpfCnpj) {
+	public Cliente(String nome, String email, String cpfCnpj,TipoCliente tipoCliente ) {
 		super();
 		this.nome = nome;
 		this.email = email;
-		this.tipo = tipo.getCodigo();
+		this.tipo = (tipoCliente==null) ? null :  tipoCliente.getCodigo();
 		this.cpfCnpj = cpfCnpj;
 	}
 	@Override

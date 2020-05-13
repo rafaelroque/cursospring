@@ -83,7 +83,7 @@ public class CursospringApplication implements CommandLineRunner {
 	   
 	   e1.setCidades(Arrays.asList(c1 , c2));
 	   
-	   Cliente cliente1= new Cliente("Rafael", "rafa834@gmail.com", TipoCliente.PESSOA_FISICA, "98665278320");
+	   Cliente cliente1= new Cliente("Rafael", "rafa834@gmail.com", "98665278320",TipoCliente.PESSOA_FISICA);
 	   Endereco end1  = new Endereco("Rua x", c1);
 	   cliente1.setEnderecos(Arrays.asList(end1));
 	   cliente1.setTelefones(Stream.of("1","2","3").collect(Collectors.toSet()));

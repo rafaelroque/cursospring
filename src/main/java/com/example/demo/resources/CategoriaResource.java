@@ -34,10 +34,8 @@ public class CategoriaResource {
 
 	@RequestMapping(value = "/{id}" , method = RequestMethod.GET)
 	public ResponseEntity<?> buscar(@PathVariable Integer id)   {
-
-		return ResponseEntity.ok().body(service.buscar(id));
+			return ResponseEntity.ok().body(service.buscar(id));
 	}
-
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO categoriaDto){
 
