@@ -2,6 +2,14 @@ package com.example.demo.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.example.demo.services.validation.ClienteInsert;
+
+@ClienteInsert
 public class ClienteNewDTO implements Serializable {
 
 	/**
@@ -9,8 +17,14 @@ public class ClienteNewDTO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@NotEmpty(message = "Nome não pode ser vazio")
+	@Length(min = 5 , max=100 , message = "Tamanho do campo inválido")
 	private String nome;
+	
+	@NotEmpty(message = "Preenchimento obrigatorio")
+	@Email(message = "Email invalido")
 	private String email;
+	
 	private Integer tipo;
 	private String cpfCnpj;
 	
