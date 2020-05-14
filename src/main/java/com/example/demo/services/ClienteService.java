@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
@@ -48,7 +49,12 @@ public class ClienteService {
 	}
 	
 	public void excluir(Integer id) {
-		repo.deleteById(id);
+		try {
+			repo.deleteById(id);	
+		}catch(DataIntegrityViolationException e) {
+			throw new DataIntegrityViolationException("Não pode apagar pois existem objetos associados");
+		}
+		
 	}
 	
 	public List<Cliente> listarTodos(){
