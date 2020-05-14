@@ -10,6 +10,8 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.Categoria;
+import com.example.demo.domain.Cliente;
+import com.example.demo.domain.Categoria;
 import com.example.demo.dto.CategoriaDTO;
 import com.example.demo.repositories.CategoriaRepository;
 import com.example.demo.services.exception.ObjectNotFoundException;
@@ -31,8 +33,11 @@ public class CategoriaService {
 		return repo.save(categoria);
 	}
 	
-	public Categoria atualizar(Categoria categoria) {
-		return repo.save(categoria);
+	public Categoria update(Categoria categoria) {
+		Categoria newCategoria = repo.findById(categoria.getId()).get();
+		updateData(newCategoria, categoria);
+		return repo.save(newCategoria);
+		
 	}
 	
 	public void excluir(Integer id) {
@@ -51,5 +56,10 @@ public class CategoriaService {
 	public Categoria fromDto(CategoriaDTO dto) {
 		return new Categoria(null, dto.getNome());
 	}
+	
+	private void updateData(Categoria newObj, Categoria oldObj) {
+		newObj.setNome(oldObj.getNome());
+	}
+
 
 }
