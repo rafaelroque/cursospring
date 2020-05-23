@@ -127,8 +127,8 @@ public class CursospringApplication implements CommandLineRunner {
 		ped2.setPagamento(pagto2);
 		pedidoRepository.saveAll(Arrays.asList(ped1 , ped2));
 
-		ItemPedido itemPedido1 = new ItemPedido(ped1, p1, 50.00, 5, 200.00);
-		ItemPedido itemPedido2 = new ItemPedido(ped1, p2, 0.00, 5, 200.00);
+		ItemPedido itemPedido1 = new ItemPedido(ped1, p1, 0.00, 2, 2000.00);
+		ItemPedido itemPedido2 = new ItemPedido(ped1, p2, 0.00, 1, 800.00);
 		ItemPedido itemPedido3 = new ItemPedido(ped2, p1, 0.00, 3, 100.00);
 		itemPedidoRepository.saveAll(Arrays.asList(itemPedido1 , itemPedido2 ,itemPedido3));
 

@@ -3,7 +3,9 @@ package com.example.demo.domain;
 import javax.persistence.Entity;
 
 import com.example.demo.domain.enums.EstadoPagamento;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
+@JsonTypeName("pagamentoComCartao")
 @Entity
 public class PagamentoCartao extends Pagamento{
 
